@@ -1,11 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
 import './Product.css'
-
+import { CartContext } from '../shared/context/cart-context'
 const Product = (props) => {
 
+    const [,setCartItems] = useContext(CartContext)
+
     const addToCart = () => {
-        console.log('Clicked')
+        const product = {
+            title: props.title,
+            price: props.price
+        }
+        setCartItems((currentState) => {
+            return [...currentState, product]
+        })
     }
 
     return(
